@@ -6,6 +6,7 @@
 
 var db = require("../models");
 
+
 // GET /api/albums
 function index(req, res) {
   // send back all albums as JSON
@@ -26,6 +27,23 @@ function index(req, res) {
 // POST /api/albums
 function create(req, res) {
   // create an album based on request body and send it back as JSON
+  var album = new db.Album({
+    name: req.body.name,
+    artistName: req.body.artistName,
+    releaseDate: req.body.releaseDate,
+  });
+
+  album.save(function(err, newAlbum){
+    if(err) {return console.log(err)}
+    console.log("new form has added");
+    // res.send(newAlbum);
+    res.redirect("/");
+  });
+  // console.log(req.name);
+
+  // console.log(req.body.name + "@@@@" + req.body.artistName);
+
+
 }
 
 // GET /api/albums/:albumId

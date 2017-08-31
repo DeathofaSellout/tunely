@@ -19,10 +19,33 @@
   </head>
   <body>
     <div class="jumbotron">
+
       <div class="container">
         <h1>Welcome to tunely</h1>
         <p>Your music binder!</p>
       </div>
+    </div>
+
+    <!-- Add a new album -->
+    <div class="container">
+    <form id="album_form" class="form-group" method ="POST" action="/api/albums">
+    <label class="col-md-4 control-label" for="name">Album Name</label>
+        <div class="col-md-4">
+        <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
+        </div>
+
+    <label class="col-md-4 control-label" for="name">Artist Name</label>
+        <div class="col-md-4">
+        <input id="artistName" name="artistName" type="text" placeholder="" class="form-control input-md" required="">
+        </div>
+
+    <label class="col-md-4 control-label" for="name">Release Date</label>
+        <div class="col-md-4">
+        <input id="releaseDate" name="releaseDate" type="text" placeholder="" class="form-control input-md" required="">
+        </div>
+      
+      <button type="submit" class="btn btn-primary">Add Album</button>
+    </form>
     </div>
 
     <section class="container">
@@ -31,6 +54,8 @@
           <h2>Albums</h2>
         </div>
       </div>
+
+
       <!-- albums! -->
       <div id='albums'>
 

@@ -47,7 +47,27 @@ $(document).ready(function() {
     success: handleSuccess,
     error: handleError
   });
+
+
+  $('#album_form').on("submit", function(e){
+    e.preventDefault();
+    // console.log("HELLO ");
+    // var user_input = $('input[name=album_input]');
+    var input = $(this).serialize();
+
+    $.ajax({
+      method: 'POST',
+      url: '/api/albums',
+      data: input,
+    });
+
+  });
+
+
+
 });
+
+
 function handleSuccess (albums) {
     albums.forEach(function(album) {
       renderAlbum(album);
@@ -64,7 +84,7 @@ function handleError(err){
 
 // this function takes a single album and renders it to the page
 function renderAlbum(album) {
-  console.log('rendering album:', album);
+  // console.log('rendering album:', album);
 
   var newHTML = (`
   <div class="row album">
