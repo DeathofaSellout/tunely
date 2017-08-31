@@ -37,6 +37,16 @@ albums.push({
 // GET /api/albums
 function index(req, res) {
   // send back all albums as JSON
+  // $.ajax({
+  //   method: 'GET',
+  //   url: '/api/albums',
+  //   success: displayAll,
+  //   // error: handleError
+  // });
+  displayAll();
+  function displayAll() {
+    res.json(albums);
+  }
 }
 
 // POST /api/albums
