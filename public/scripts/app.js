@@ -4,50 +4,32 @@
  * into functions and objects as needed.
  *
  */
-
-
-/* hard-coded data! */
-var sampleAlbums = [];
-sampleAlbums.push({
-             artistName: 'Ladyhawke',
-             name: 'Ladyhawke',
-             releaseDate: '2008, November 18',
-             genres: [ 'new wave', 'indie rock', 'synth pop' ]
-           });
-sampleAlbums.push({
-             artistName: 'The Knife',
-             name: 'Silent Shout',
-             releaseDate: '2006, February 17',
-             genres: [ 'synth pop', 'electronica', 'experimental' ]
-           });
-sampleAlbums.push({
-             artistName: 'Juno Reactor',
-             name: 'Shango',
-             releaseDate: '2000, October 9',
-             genres: [ 'electronic', 'goa trance', 'tribal house' ]
-           });
-sampleAlbums.push({
-             artistName: 'Philip Wesley',
-             name: 'Dark Night of the Soul',
-             releaseDate: '2008, September 12',
-             genres: [ 'piano' ]
-           });
-/* end of hard-coded data */
-
-
-
-
+//  <script src='../../controllers'>
+// var index = require("./albumsController");
+// </script>
 $(document).ready(function() {
+  // how to get info from a form, and serialize it for a search
+  $(".music-search").on("submit", function(e){
+    e.preventDefault();
+    console.log("New Music serialized.", $(this).serialize());
+    var input = $(this).serialize();
+    $.ajax({
+             method: 'POST',
+             url: '/api/albums/',
+             data: input,
+             success: index.index
+            //  error: newCharacterError
+            //req.body.genres.split(",")
+         });
+        $(this)[0].reset();
+  })
 
-  sampleAlbums.forEach(function(album){
-    renderAlbum(album);
-    console.log(album);
-  });
+  // .forEach(function(album){
+  //   renderAlbum(album);
+  //   console.log(album);
+  // });
+
 });
-
-
-
-
 
 // this function takes a single album and renders it to the page
 function renderAlbum(album) {

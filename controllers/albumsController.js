@@ -12,7 +12,10 @@ function index(req, res) {
 
 // POST /api/albums
 function create(req, res) {
-  // create an album based on request body and send it back as JSON
+  var genre = req.body.genre.split(",");
+  db.Album.create({artistName: req.body.artist, name: req.body.album, releaseDate: req.body.releaseDate, genres: genre,},function(err,album){
+  index();
+  });
 }
 
 // GET /api/albums/:albumId
