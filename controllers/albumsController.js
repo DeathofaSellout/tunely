@@ -4,6 +4,7 @@
 var db = require("../models");
 // GET /api/albums
 function index(req, res) {
+  console.log('in index, res is', res)
   // send back all albums as JSON
   db.Album.find({}).exec(function(err,albums){
     res.json(albums);
@@ -13,8 +14,12 @@ function index(req, res) {
 // POST /api/albums
 function create(req, res) {
   var genre = req.body.genre.split(",");
-  db.Album.create({artistName: req.body.artist, name: req.body.album, releaseDate: req.body.releaseDate, genres: genre,},function(err,album){
-  index();
+  db.Album.create({
+    artistName: req.body.artist,
+    name: req.body.album,
+    releaseDate: req.body.releaseDate,
+    genres: genre,
+  },function(err,album){
   });
 }
 

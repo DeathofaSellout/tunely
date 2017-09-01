@@ -8,26 +8,27 @@
 // var index = require("./albumsController");
 // </script>
 $(document).ready(function() {
+  $.ajax({
+    method: 'GET',
+    url: '/api/albums',
+    success: renderMultipleAlbums
+  });
   // how to get info from a form, and serialize it for a search
   $(".music-search").on("submit", function(e){
     e.preventDefault();
     console.log("New Music serialized.", $(this).serialize());
     var input = $(this).serialize();
-    $.ajax({
-             method: 'POST',
-             url: '/api/albums/',
-             data: input,
-             success: index.index
-            //  error: newCharacterError
-            //req.body.genres.split(",")
-         });
-        $(this)[0].reset();
-  })
-
-  // .forEach(function(album){
-  //   renderAlbum(album);
-  //   console.log(album);
-  // });
+    $.post('/api/albums', input, function(album) {
+      renderAlbum(album);  //render the server's response
+    });
+    $(this)[0].reset();
+  });
+  function renderMultipleAlbums(albums){
+    albums.forEach(function(album){
+      renderAlbum(album);
+      console.log(album);
+    });
+  }
 
 });
 
